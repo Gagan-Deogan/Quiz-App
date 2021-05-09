@@ -1,0 +1,1 @@
+export { QuizBody } from "./QuizBody";
