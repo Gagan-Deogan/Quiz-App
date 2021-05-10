@@ -4,7 +4,7 @@ export const Option = ({ option }: { option: OptionType }) => {
   const { answer } = option;
   return (
     <>
-      <h3>{answer}</h3>
+      <h3 className="text-lg" >{answer}</h3>
     </>
   );
 };
