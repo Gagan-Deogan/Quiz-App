@@ -1,0 +1,1 @@
+export { QuizRules } from "./QuizRules";
