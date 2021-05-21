@@ -39,9 +39,7 @@ export const Card = () => {
         <div className="flex flex-row mt-2 justify-between">
           <div className="flex flex-col items-start w-5/6">
             <h3 className="text-lg font-bold ">Vert long text</h3>
-            <span className={getbagdeStyle({ difficulty: "MEDIUM" })}>
-              Easy
-            </span>
+            <span className={getbagdeStyle({ difficulty: "EASY" })}>Easy</span>
           </div>
           <div className="flex flex-col items-end w-1/6">
             <Button

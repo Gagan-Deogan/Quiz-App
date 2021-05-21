@@ -1,13 +1,20 @@
 import { Quiz } from "./../data/db.types";
+import { calculateScore } from "../utils";
 
 type InitialStateType = {
-  attempted: Quiz | null;
+  attemptedQuiz: Quiz | null;
   currentQuestion: number;
+  totalScore: number;
+  finish: boolean;
 };
 
 type ActionType =
-  | { type: "SET_QUIZ"; payload: { quiz: Quiz } }
-  | { type: "NEXT_QUESTION" };
+  | { type: "LOAD_QUIZ"; payload: { quiz: Quiz | null } }
+  | { type: "NEXT_QUESTION" }
+  | {
+      type: "SUBMIT_ANSWER";
+      payload: { questionId: string; optionId: string };
+    };
 
 export type ContextType = {
   state: InitialStateType;
@@ -19,8 +26,10 @@ type reduceType = {
 };
 
 export const initialState: InitialStateType = {
-  attempted: null,
+  attemptedQuiz: null,
   currentQuestion: 0,
+  totalScore: 0,
+  finish: false,
 };
 
 export const reducer = (
@@ -28,10 +37,58 @@ export const reducer = (
   action: ActionType
 ): typeof initialState => {
   switch (action.type) {
-    case "SET_QUIZ":
-      return { ...state, attempted: { ...action.payload.quiz } };
+    case "LOAD_QUIZ":
+      return {
+        totalScore: 0,
+        currentQuestion: 0,
+        finish: false,
+        attemptedQuiz: action.payload.quiz,
+      };
     case "NEXT_QUESTION":
       return { ...state, currentQuestion: state.currentQuestion + 1 };
+    case "SUBMIT_ANSWER":
+      if (state.attemptedQuiz) {
+        const selectedQuestion = state.attemptedQuiz.questions.find(
+          (question) => question._id === action.payload.questionId
+        );
+
+        const isQuizEnd =
+          state.currentQuestion === state.attemptedQuiz.questions.length;
+
+        if (selectedQuestion) {
+          const questionWithAnswserSelected = {
+            ...selectedQuestion,
+            options: selectedQuestion.options.map((option) =>
+              option._id === action.payload.optionId
+                ? { ...option, isSelected: true }
+                : { ...option, isSelected: false }
+            ),
+          };
+
+          const attemptedQuizUpdated = {
+            ...state.attemptedQuiz,
+            questions: state.attemptedQuiz.questions.map((question) =>
+              question._id === action.payload.questionId
+                ? questionWithAnswserSelected
+                : question
+            ),
+          };
+
+          const totalScore = isQuizEnd
+            ? calculateScore(attemptedQuizUpdated.questions)
+            : 0;
+
+          return {
+            totalScore,
+            finish: isQuizEnd,
+            currentQuestion: isQuizEnd
+              ? state.currentQuestion
+              : state.currentQuestion + 1,
+            attemptedQuiz: attemptedQuizUpdated,
+          };
+        }
+      }
+      return state;
     default:
       return state;
   }

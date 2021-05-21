@@ -31,7 +31,7 @@ module.exports = {
       gray: "#d1d5db",
     },
     fontFamily: {
-      sans: ["Raleway", "sans-serif"],
+      sans: ["Roboto", "sans-serif"],
     },
     borderRadius: {
       none: "0",

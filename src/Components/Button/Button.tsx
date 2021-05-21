@@ -1,10 +1,12 @@
+import classNames from "classnames";
 import React from "react";
 import { FunctionComponent } from "react";
 
 type Buttontype = {
   varient: "DEFAULT" | "FILLED" | "OUTLINED";
-  disabled: boolean;
+  disabled?: boolean;
   onClick?: Function;
+  className?: string;
   size: "lg" | "sm";
 };
 
@@ -19,19 +21,24 @@ const filledBtnStyle =
 
 const outlineBtnStyle =
   "border border-primary-light text-primary-light shadow ";
-
+const disabledBtnStyle = "bg-gray text-white";
 const getBtnStyle = ({
   varient,
   size,
+  className,
+  disabled,
 }: {
   varient: string;
   size: string;
+  className?: string;
+  disabled?: boolean;
 }): string => {
   let style = defaultBtnStyle;
-  if (varient === "FILLED") {
+  if (disabled) {
+    style = style + " " + disabledBtnStyle;
+  } else if (varient === "FILLED") {
     style = style + " " + filledBtnStyle;
-  }
-  if (varient === "OUTLINED") {
+  } else if (varient === "OUTLINED") {
     style = style + " " + outlineBtnStyle;
   }
   if (size === "lg") {
@@ -40,16 +47,16 @@ const getBtnStyle = ({
   if (size === "sm") {
     style = style + " " + smBtnStyle;
   }
-  return style;
+  return style + " " + className;
 };
 
 export const Button: FunctionComponent<Buttontype> = (props) => {
-  const { varient, onClick, size, disabled, children } = props;
+  const { varient, onClick, size, disabled, className, children } = props;
   return (
     <button
-      className={getBtnStyle({ varient, size })}
+      className={getBtnStyle({ varient, size, className, disabled })}
       onClick={(e) => onClick && onClick(e)}
-      disabled={disabled}>
+      disabled={!!disabled}>
       {children}
     </button>
   );

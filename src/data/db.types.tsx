@@ -18,3 +18,5 @@ export type Quiz = {
   name: string;
   questions: Question[];
 };
+
+export type Quizzies = Quiz[];
