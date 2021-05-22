@@ -1,4 +1,4 @@
-import { Quiz } from "../../data/db.types";
+import { Quiz } from "../../types/share.types";
 import { calculateScore } from "../../utils";
 
 export type InitialState = {

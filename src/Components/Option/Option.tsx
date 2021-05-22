@@ -1,4 +1,4 @@
-import { OptionType } from "../../data/db.types";
+import { OptionType } from "../../types/share.types";
 
 const getOptionStyle = (
   varient: "DEFAULT" | "RED" | "GREEN",
@@ -44,7 +44,7 @@ export const Option = ({
       <div
         className={getOptionStyle(varient, isReview)}
         onClick={() => setSelectedOption && setSelectedOption(_id)}>
-        <h3 className="text-lg sm:text-xl md:text-2xl">{answer}</h3>
+        <h3 className="text-lg sm:text-xl">{answer}</h3>
       </div>
     </>
   );

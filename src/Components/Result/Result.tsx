@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useQuiz } from "../../Context/QuizContext";
 import { Button } from "../Button";
@@ -6,12 +6,18 @@ import { QuizBody } from "../QuizBody";
 export const Result = () => {
   const {
     state: { totalScore, attemptedQuiz },
+    dispatch,
   } = useQuiz();
   const [showAnswers, setShowAnswers] = useState<boolean>(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch({ type: "CALCULATE_SCORE" });
+  }, []);
+
   return (
     <>
-      <h2 className="w-full text-center text-lg sm:text-xl md:text-3xl mt-24 ">
+      <h2 className="w-full text-center text-xl sm:text-2xl md:text-3xl mt-24 ">
         Your Score:{totalScore}
       </h2>
       {totalScore > 60 && (

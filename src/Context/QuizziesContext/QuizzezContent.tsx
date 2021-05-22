@@ -1,5 +1,5 @@
 import { useContext, createContext, useState, useEffect } from "react";
-import { Quizzies } from "../../data/db.types";
+import { Quizzies } from "../../types/share.types";
 import axios, { AxiosError } from "axios";
 
 type Context = {

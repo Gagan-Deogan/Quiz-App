@@ -25,12 +25,6 @@ export const Quiz = () => {
     };
   }, [quizzes]);
 
-  useEffect(() => {
-    if (state.isFinish) {
-      dispatch({ type: "CALCULATE_SCORE" });
-    }
-  }, [state]);
-
   return (
     <>
       <section className=" mx-auto mt-3 px-3 flex flex-col items-center lg:container">
