@@ -5,7 +5,7 @@ Github Repository [https://github.com/GagandeepSingh0115/Quiz-App].
 
 Live Demo [https://greenifyquiz.netlify.app/]
 
-> Features of **Greenify**
+> Features of **Greenify Quiz**
 - Multiple Quizzes 
 - Evalute Score 
 - Option for review mistakes 
