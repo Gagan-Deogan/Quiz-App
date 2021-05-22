@@ -28,9 +28,9 @@ export const Card: React.FC<{ quiz: Quiz }> = ({ quiz }) => {
           src={thumbnail}
           alt=""
         />
-        <div className="flex flex-row mt-2 justify-between">
+        <div className="flex flex-row mt-4 justify-between">
           <div className="flex flex-col items-start w-5/6">
-            <h3 className="text-lg font-bold ">{name}</h3>
+            <h3 className="text-lg font-bold mb-2">{name}</h3>
             <span className={getbagdeStyle(difficult)}>{difficult}</span>
           </div>
           <div className="flex flex-col items-end w-1/6">

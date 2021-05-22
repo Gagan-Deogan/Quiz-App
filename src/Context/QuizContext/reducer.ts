@@ -1,55 +1,48 @@
-import { stat } from "fs";
 import { Quiz } from "../../data/db.types";
 import { calculateScore } from "../../utils";
 
-type InitialStateType = {
+export type InitialState = {
   attemptedQuiz: Quiz | null;
   currentQuestion: number;
   totalScore: number;
-  finish: boolean;
+  isFinish: boolean;
 };
 
-type ActionType =
+export type Action =
   | { type: "LOAD_QUIZ"; payload: { quiz: Quiz | null } }
-  | { type: "NEXT_QUESTION" }
+  | { type: "SKIP_QUESTION" }
   | {
       type: "SUBMIT_ANSWER";
       payload: { questionId: string; optionId: string };
-    };
-type reduceType = {
-  state: InitialStateType;
-  action: ActionType;
-};
+    }
+  | { type: "CALCULATE_SCORE" };
 
-export type ContextType = {
-  state: InitialStateType;
-  dispatch: (action: ActionType) => void;
-};
-
-export const initialState: InitialStateType = {
+export const initialState: InitialState = {
   attemptedQuiz: null,
   currentQuestion: 0,
   totalScore: 0,
-  finish: false,
+  isFinish: false,
 };
 
 export const reducer = (
-  state: InitialStateType,
-  action: ActionType
+  state: InitialState,
+  action: Action
 ): typeof initialState => {
   switch (action.type) {
     case "LOAD_QUIZ":
       return {
         totalScore: 0,
         currentQuestion: 0,
-        finish: false,
+        isFinish: false,
         attemptedQuiz: action.payload.quiz,
       };
-    case "NEXT_QUESTION":
+    case "SKIP_QUESTION":
       if (state.attemptedQuiz) {
         const isQuizEnd =
           state.currentQuestion === state.attemptedQuiz.questions.length;
-        return { ...state, currentQuestion: state.currentQuestion + 1 };
+        return isQuizEnd
+          ? { ...state, isFinish: true }
+          : { ...state, currentQuestion: state.currentQuestion + 1 };
       }
       return state;
     case "SUBMIT_ANSWER":
@@ -80,13 +73,9 @@ export const reducer = (
             ),
           };
 
-          const totalScore = isQuizEnd
-            ? calculateScore(attemptedQuizUpdated.questions)
-            : 0;
-
           return {
-            totalScore,
-            finish: isQuizEnd,
+            ...state,
+            isFinish: isQuizEnd,
             currentQuestion: isQuizEnd
               ? state.currentQuestion
               : state.currentQuestion + 1,
@@ -95,6 +84,13 @@ export const reducer = (
         }
       }
       return state;
+    case "CALCULATE_SCORE":
+      return state.attemptedQuiz
+        ? {
+            ...state,
+            totalScore: calculateScore(state.attemptedQuiz.questions),
+          }
+        : state;
     default:
       return state;
   }

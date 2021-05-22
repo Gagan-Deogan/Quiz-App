@@ -1,14 +1,14 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import { Quizzies } from "../../data/db.types";
 import axios, { AxiosError } from "axios";
-import { data } from "./db";
-type initialState = {
+
+type Context = {
   quizzes: Quizzies | null;
 };
 type serverResponse = { success: boolean; quzzies: Quizzies };
 type ServerError = { errorMessage: string };
 
-const QuizzesContext = createContext<initialState>({} as initialState);
+const QuizzesContext = createContext<Context>({} as Context);
 
 export const QuizzezProvider: React.FC = ({ children }) => {
   const [quizzes, setQuizzes] = useState<Quizzies | null>(null);

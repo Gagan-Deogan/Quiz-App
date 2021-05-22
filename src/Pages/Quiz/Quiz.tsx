@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 import { QuizRules } from "../../Components/QuizRules";
 import { QuizBody } from "../../Components/QuizBody";
-import { useQuizContext } from "../../Context/QuizContext";
+import { useQuiz } from "../../Context/QuizContext";
 import { useQuizzez } from "../../Context/QuizziesContext";
+import { Result } from "../../Components/Result";
 import { useParams } from "react-router";
 export const Quiz = () => {
-  const { state, dispatch } = useQuizContext();
+  const { state, dispatch } = useQuiz();
   const { quizzes } = useQuizzez();
 
   const { quizId } = useParams();
 
   const startTheQuiz = () => {
-    dispatch({ type: "NEXT_QUESTION" });
+    dispatch({ type: "SKIP_QUESTION" });
   };
 
   useEffect(() => {
@@ -24,29 +25,28 @@ export const Quiz = () => {
     };
   }, [quizzes]);
 
+  useEffect(() => {
+    if (state.isFinish) {
+      dispatch({ type: "CALCULATE_SCORE" });
+    }
+  }, [state]);
+
   return (
     <>
       <section className=" mx-auto mt-3 px-3 flex flex-col items-center lg:container">
-        {!!state.totalScore && (
-          <h1 className="w-full text-right text-3xl">
-            Your Score:{state.totalScore}
-          </h1>
+        {state.isFinish && <Result />}
+
+        {state.currentQuestion === 0 && (
+          <QuizRules startTheQuiz={startTheQuiz} />
         )}
 
-        {!state.currentQuestion && <QuizRules startTheQuiz={startTheQuiz} />}
-
-        {!!state.currentQuestion && !state.finish && state.attemptedQuiz && (
+        {!!state.currentQuestion && !state.isFinish && state.attemptedQuiz && (
           <QuizBody
             question={state.attemptedQuiz?.questions[state.currentQuestion - 1]}
             isReview={false}
             key={state.attemptedQuiz?.questions[state.currentQuestion - 1]._id}
           />
         )}
-        {state.finish &&
-          state.attemptedQuiz &&
-          state.attemptedQuiz.questions.map((question) => (
-            <QuizBody question={question} isReview={true} key={question._id} />
-          ))}
       </section>
     </>
   );

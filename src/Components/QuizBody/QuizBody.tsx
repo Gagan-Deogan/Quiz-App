@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Question } from "../../data/db.types";
 import { Button } from "../Button";
 import { Option } from "../Option";
-import { useQuizContext } from "../../Context/QuizContext";
+import { useQuiz } from "../../Context/QuizContext";
 import { QuizHeader } from "../QuizHeader";
 
 const getOptionVarient = (
@@ -26,7 +26,7 @@ export const QuizBody = ({
   const {
     state: { currentQuestion },
     dispatch,
-  } = useQuizContext();
+  } = useQuiz();
 
   const submitAnswer = (selectedOption: string | null) => {
     if (selectedOption) {
@@ -35,10 +35,6 @@ export const QuizBody = ({
         payload: { questionId: question._id, optionId: selectedOption },
       });
     }
-  };
-
-  const skipQuestion = () => {
-    dispatch({ type: "NEXT_QUESTION" });
   };
 
   return (
@@ -73,7 +69,7 @@ export const QuizBody = ({
           <Button
             size="lg"
             varient="OUTLINED"
-            onClick={skipQuestion}
+            onClick={() => dispatch({ type: "SKIP_QUESTION" })}
             className="mx-5">
             Skip
           </Button>
