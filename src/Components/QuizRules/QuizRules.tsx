@@ -11,7 +11,7 @@ export const QuizRules: React.FC<{
           <li className="my-2">
             Each multiple choice question has only one correct answer
           </li>
-          <li className="my-2">Each Anwser should submit in 30 sec</li>
+          <li className="my-2">Each Anwser should submit in 15 sec</li>
           <li className="my-2">Each right answer scores 10 Points</li>
         </ul>
         <div className="flex justify-center mt-4 mb-2">
