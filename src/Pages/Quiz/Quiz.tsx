@@ -1,19 +1,28 @@
 import { useEffect } from "react";
 import { QuizRules } from "../../Components/QuizRules";
 import { QuizBody } from "../../Components/QuizBody";
-import { quiz } from "../../data/db";
 import { useQuizContext } from "../../Context/QuizContext";
+import { useQuizzez } from "../../Context/QuizziesContext";
+import { useParams } from "react-router";
 export const Quiz = () => {
   const { state, dispatch } = useQuizContext();
+  const { quizzes } = useQuizzez();
+
+  const { quizId } = useParams();
+
   const startTheQuiz = () => {
     dispatch({ type: "NEXT_QUESTION" });
   };
+
   useEffect(() => {
-    dispatch({ type: "LOAD_QUIZ", payload: { quiz } });
+    const quiz = quizzes?.find((quiz) => quiz._id === quizId);
+    if (quiz) {
+      dispatch({ type: "LOAD_QUIZ", payload: { quiz } });
+    }
     return () => {
       dispatch({ type: "LOAD_QUIZ", payload: { quiz: null } });
     };
-  }, []);
+  }, [quizzes]);
 
   return (
     <>

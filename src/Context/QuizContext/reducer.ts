@@ -1,5 +1,6 @@
-import { Quiz } from "./../data/db.types";
-import { calculateScore } from "../utils";
+import { stat } from "fs";
+import { Quiz } from "../../data/db.types";
+import { calculateScore } from "../../utils";
 
 type InitialStateType = {
   attemptedQuiz: Quiz | null;
@@ -15,14 +16,14 @@ type ActionType =
       type: "SUBMIT_ANSWER";
       payload: { questionId: string; optionId: string };
     };
+type reduceType = {
+  state: InitialStateType;
+  action: ActionType;
+};
 
 export type ContextType = {
   state: InitialStateType;
   dispatch: (action: ActionType) => void;
-};
-type reduceType = {
-  state: InitialStateType;
-  action: ActionType;
 };
 
 export const initialState: InitialStateType = {
@@ -45,7 +46,12 @@ export const reducer = (
         attemptedQuiz: action.payload.quiz,
       };
     case "NEXT_QUESTION":
-      return { ...state, currentQuestion: state.currentQuestion + 1 };
+      if (state.attemptedQuiz) {
+        const isQuizEnd =
+          state.currentQuestion === state.attemptedQuiz.questions.length;
+        return { ...state, currentQuestion: state.currentQuestion + 1 };
+      }
+      return state;
     case "SUBMIT_ANSWER":
       if (state.attemptedQuiz) {
         const selectedQuestion = state.attemptedQuiz.questions.find(

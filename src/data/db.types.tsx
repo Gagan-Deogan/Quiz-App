@@ -16,6 +16,8 @@ export type Question = {
 export type Quiz = {
   _id: string;
   name: string;
+  difficult: "HARD" | "EASY" | "MEDIUM";
+  thumbnail: string;
   questions: Question[];
 };
 
