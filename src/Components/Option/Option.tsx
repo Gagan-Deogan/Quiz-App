@@ -10,19 +10,17 @@ const getOptionStyle = (
   } `;
   if (varient === "DEFAULT") {
     defaultStyle =
-      defaultStyle + " " + "border border-b-4 border-opacity-80 border-gray";
+      defaultStyle + " border border-b-4 border-opacity-80 border-gray";
   }
   if (varient === "GREEN") {
     defaultStyle =
       defaultStyle +
-      " " +
-      "bg-primary-default text-white border border-b-4 border-primary-dark";
+      " bg-primary-default text-white border border-b-4 border-primary-dark";
   }
   if (varient === "RED") {
     defaultStyle =
       defaultStyle +
-      " " +
-      "bg-red-default text-white border border-b-4 border-red-dark";
+      " bg-red-default text-white border border-b-4 border-red-dark";
   }
   return defaultStyle;
 };

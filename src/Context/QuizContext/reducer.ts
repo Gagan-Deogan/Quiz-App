@@ -1,21 +1,5 @@
-import { Quiz } from "../../types/share.types";
+import { InitialState, Action } from "./reducer.types";
 import { calculateScore } from "../../utils";
-
-export type InitialState = {
-  attemptedQuiz: Quiz | null;
-  currentQuestion: number;
-  totalScore: number;
-  isFinish: boolean;
-};
-
-export type Action =
-  | { type: "LOAD_QUIZ"; payload: { quiz: Quiz | null } }
-  | { type: "SKIP_QUESTION" }
-  | {
-      type: "SUBMIT_ANSWER";
-      payload: { questionId: string; optionId: string };
-    }
-  | { type: "CALCULATE_SCORE" };
 
 export const initialState: InitialState = {
   attemptedQuiz: null,

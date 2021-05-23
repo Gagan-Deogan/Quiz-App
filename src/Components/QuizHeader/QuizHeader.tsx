@@ -11,6 +11,7 @@ export const QuizHeader: React.FC<{ currentQuestion: number }> = ({
     }, 1000);
     return () => clearInterval(timeInterval);
   }, []);
+
   useEffect(() => {
     if (timer < 1) {
       dispatch({ type: "SKIP_QUESTION" });

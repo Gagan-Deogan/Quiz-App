@@ -1,4 +1,4 @@
-import { OptionType, Question } from "../types/share.types";
+import { Question } from "../types/share.types";
 
 const scoreReduce = (acc: number, question: Question): number => {
   const isSubmittedAnswerRight = question.options.find(

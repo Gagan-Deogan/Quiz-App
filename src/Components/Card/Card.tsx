@@ -6,11 +6,11 @@ const getbagdeStyle = (difficulty: "EASY" | "MEDIUM" | "HARD"): string => {
   let defaultStyle = "px-2 rounded-full text-sm";
   switch (difficulty) {
     case "EASY":
-      return defaultStyle + " " + "bg-yellow-light text-yellow-dark";
+      return defaultStyle + " bg-yellow-light text-yellow-dark";
     case "MEDIUM":
-      return defaultStyle + " " + "bg-primary-light text-white";
+      return defaultStyle + " bg-primary-light text-white";
     case "HARD":
-      return defaultStyle + " " + "bg-red-light text-red-dark";
+      return defaultStyle + " bg-red-light text-red-dark";
   }
 };
 

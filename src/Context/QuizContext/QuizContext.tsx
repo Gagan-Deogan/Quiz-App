@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
-import { InitialState, Action, initialState, reducer } from "./reducer";
+import { initialState, reducer } from "./reducer";
+import { InitialState, Action } from "./reducer.types";
 
 type Context = {
   state: InitialState;
