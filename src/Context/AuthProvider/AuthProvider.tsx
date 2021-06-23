@@ -3,11 +3,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 // import { getUserDetails } from "services/auth.services";
 import { Loader } from "Components/Loader";
 import { User } from "types";
-import // useRequest,
+import { setupAxiosDefaultHeaders } from "utils";
+import { getUserDetails } from "./auth.service";
+// import // useRequest,
 // instance,
 // setupAuthExceptionHandler,
 // setupAuthHeaderForServiceCalls,
-"utils";
+// "utils";
 import { AuthContextState } from "./auth.types";
 const AuthContext = createContext<AuthContextState>({} as AuthContextState);
 
@@ -15,17 +17,17 @@ export const AuthProvider: React.FC = ({ children }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(
-    localStorage?.getItem("Token") || null
+    localStorage?.getItem("token") || null
   );
-  const [loading, setLoading] = useState(token ? true : false);
-  const location = useLocation();
-  const { pathname } = location;
-  // setupAuthHeaderForServiceCalls(token, instance);
+  const [loading, setLoading] = useState<boolean>(token ? true : false);
+
+  setupAxiosDefaultHeaders(token);
 
   const logoutUser = () => {
-    localStorage?.removeItem("Token");
+    localStorage?.removeItem("token");
     setUser(null);
     setToken(null);
+    navigate("/");
   };
 
   const loginUser = ({
@@ -38,25 +40,23 @@ export const AuthProvider: React.FC = ({ children }) => {
     if (user && token) {
       setUser(user);
       setToken(token);
-      navigate("/home");
+      localStorage.setItem("token", token);
     }
   };
 
-  // if (token) {
-  //   setupAuthExceptionHandler(logoutUser, navigate, instance);
-  // }
-
   useEffect(() => {
-    // getUserDetails({
-    //   token,
-    //   user,
-    //   pathname,
-    //   setUser,
-    //   request,
-    //   setLoading,
-    //   navigate,
-    // });
-  }, [token]);
+    (async () => {
+      if (token) {
+        const res = await getUserDetails(token);
+        setLoading(false);
+        if ("data" in res) {
+          setUser(res.data);
+        } else {
+          logoutUser();
+        }
+      }
+    })();
+  }, []);
 
   if (loading) {
     return <Loader />;

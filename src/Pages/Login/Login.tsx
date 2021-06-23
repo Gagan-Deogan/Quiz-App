@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Button } from "Components/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Input } from "Components/Input";
 import { PasswordInput } from "Components/PasswordInput";
 import { handleLogin } from "./login.service";
 import { useAuth } from "Context/AuthProvider";
 export const Login = () => {
   const { loginUser, user } = useAuth();
+  const location = useLocation();
+  const state = location.state;
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -26,12 +28,6 @@ export const Login = () => {
       setStatus("IDLE");
     }
   };
-
-  useEffect(() => {
-    if (user) {
-      navigate("/home");
-    }
-  }, [user, navigate]);
 
   return (
     <>

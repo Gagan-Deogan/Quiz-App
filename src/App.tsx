@@ -5,16 +5,17 @@ import { Login } from "./Pages/Login";
 import { Quiz } from "./Pages/Quiz";
 import { Signup } from "Pages/Signup";
 import { Interceptor } from "Components/Interceptor";
+import { BetterRoute } from "Components/BetterRoute";
 export const App = () => {
   return (
     <div className="App">
       <Header />
       <Interceptor />
       <Routes>
-        <Route path="/" element={<Login />}></Route>
-        <Route path="/signup" element={<Signup />}></Route>
-        <Route path="/home" element={<Home />}></Route>
-        <Route path="/quiz/:quizId" element={<Quiz />}></Route>
+        <BetterRoute type="PUBLIC-ONLY" path="/" element={<Login />} />
+        <BetterRoute type="PUBLIC-ONLY" path="/signup" element={<Signup />} />
+        <BetterRoute type="PROTECTED" path="/home" element={<Home />} />
+        <BetterRoute type="PROTECTED" path="/quiz/:quizId" element={<Quiz />} />
       </Routes>
     </div>
   );

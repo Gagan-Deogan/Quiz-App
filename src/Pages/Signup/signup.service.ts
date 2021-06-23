@@ -7,14 +7,11 @@ export const signUp = async ({
   password,
 }: handleSignupProps): Promise<SignUpResponse | ServerError> => {
   try {
-    const res: SignUpResponse = await axios.post(
-      "http://localhost:8080/users/signup",
-      {
-        email,
-        username,
-        password,
-      }
-    );
+    const res: SignUpResponse = await axios.post("/users/signup", {
+      email,
+      username,
+      password,
+    });
     return { data: res.data };
   } catch (err) {
     if (axios.isAxiosError(err)) {
