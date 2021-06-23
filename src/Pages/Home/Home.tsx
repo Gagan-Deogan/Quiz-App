@@ -1,8 +1,19 @@
+import { useEffect } from "react";
 import { Card } from "../../Components/Card";
 import { useQuizzez } from "../../Context/QuizziesContext";
 import { Loader } from "../../Components/Loader";
+import { getPlaylist } from "./home.services";
 export const Home = () => {
-  const { quizzes } = useQuizzez();
+  const { quizzes, setQuizzes } = useQuizzez();
+
+  useEffect(() => {
+    (async () => {
+      const res = await getPlaylist();
+      if ("data" in res) {
+        return setQuizzes(res.data);
+      }
+    })();
+  }, []);
   return (
     <>
       <section className="lg:container mx-auto px-3">

@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import { logoutUser } from "Context/AuthProvider";
+import { useAuth } from "Context/AuthProvider";
 // import { showSnakbar } from "features/snakbarSlice";
 export const Interceptor = () => {
   const navigate = useNavigate();
+  const { logoutUser } = useAuth();
   const [errorInterceptor, setErrorInterceptor] = useState<number | undefined>(
     undefined
   );
@@ -20,8 +21,8 @@ export const Interceptor = () => {
         if (error.response) {
           const status = error.response.status;
           if (status === 403) {
+            logoutUser();
             navigate("/login");
-            // logoutUser();
             return Promise.reject(error);
           }
           if (status === 422) {

@@ -1,15 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "Components/Button";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Input } from "Components/Input";
 import { PasswordInput } from "Components/PasswordInput";
 import { handleLogin } from "./login.service";
 import { useAuth } from "Context/AuthProvider";
 export const Login = () => {
-  const { loginUser, user } = useAuth();
-  const location = useLocation();
-  const state = location.state;
-  const navigate = useNavigate();
+  const { loginUser } = useAuth();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [status, setStatus] = useState<"IDLE" | "PENDING">("IDLE");

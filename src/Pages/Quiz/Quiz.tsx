@@ -23,7 +23,7 @@ export const Quiz = () => {
     return () => {
       dispatch({ type: "LOAD_QUIZ", payload: { quiz: null } });
     };
-  }, [quizzes]);
+  }, [quizzes, dispatch, quizId]);
 
   return (
     <>

@@ -1,15 +1,10 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-// import { getUserDetails } from "services/auth.services";
+import { useNavigate } from "react-router-dom";
 import { Loader } from "Components/Loader";
 import { User } from "types";
 import { setupAxiosDefaultHeaders } from "utils";
 import { getUserDetails } from "./auth.service";
-// import // useRequest,
-// instance,
-// setupAuthExceptionHandler,
-// setupAuthHeaderForServiceCalls,
-// "utils";
+
 import { AuthContextState } from "./auth.types";
 const AuthContext = createContext<AuthContextState>({} as AuthContextState);
 
