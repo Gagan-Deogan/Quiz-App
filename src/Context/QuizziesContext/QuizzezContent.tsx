@@ -15,10 +15,10 @@ export const QuizzezProvider: React.FC = ({ children }) => {
 
   const getPlaylist = async (): Promise<serverResponse | ServerError> => {
     try {
-      const res = await axios.get<serverResponse>(
+      const res: serverResponse = await axios.get(
         "https://GreenifyQuiz.gagandeogan.repl.co"
       );
-      return res.data;
+      return res;
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const serverError = err as AxiosError<ServerError>;
