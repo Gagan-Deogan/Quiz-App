@@ -1,4 +1,4 @@
-import { catchAxiosErr } from "./../../utils/catchAxiosError";
+import { catchAxiosErr } from "utils/catchAxiosError";
 import { ServerError } from "types";
 import axios from "axios";
 import { QuizzesResponse } from "./home.types";

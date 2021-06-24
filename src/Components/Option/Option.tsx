@@ -1,4 +1,4 @@
-import { OptionType } from "../../types/share.types";
+import { OptionType } from "types/share.types";
 
 const getOptionStyle = (
   varient: "DEFAULT" | "RED" | "GREEN",

@@ -1,4 +1,4 @@
-import { Logo } from "../../assests/icons";
+import { Logo } from "assests/icons";
 import { Button } from "../Button";
 import { useNavigate } from "react-router-dom";
 export const Header = () => {

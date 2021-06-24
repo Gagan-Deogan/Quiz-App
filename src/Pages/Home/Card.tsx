@@ -1,7 +1,7 @@
-import { Button } from "../Button";
-import { PlayIcon } from "../../assests/icons";
+import { Button } from "Components/Button";
+import { PlayIcon } from "assests/icons";
 import { useNavigate } from "react-router";
-import { Quiz } from "../../types/share.types";
+import { Quiz } from "types/share.types";
 const getbagdeStyle = (difficulty: "EASY" | "MEDIUM" | "HARD"): string => {
   let defaultStyle = "px-2 rounded-full text-sm";
   switch (difficulty) {

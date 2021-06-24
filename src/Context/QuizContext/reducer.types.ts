@@ -1,10 +1,11 @@
-import { Quiz } from "./../../types/share.types";
+import { Quiz } from "types/share.types";
 
 export type InitialState = {
   attemptedQuiz: Quiz | null;
   currentQuestion: number;
   totalScore: number;
   isFinish: boolean;
+  isResultSubmit: boolean;
 };
 
 export type Action =
@@ -14,4 +15,4 @@ export type Action =
       type: "SUBMIT_ANSWER";
       payload: { questionId: string; optionId: string };
     }
-  | { type: "CALCULATE_SCORE" };
+  | { type: "RESULT_SUBMITED" };

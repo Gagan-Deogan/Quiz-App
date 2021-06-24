@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Question } from "../../types/share.types";
+import { Question } from "types/share.types";
 import { Button } from "../Button";
 import { Option } from "../Option";
-import { useQuiz } from "../../Context/QuizContext";
+import { useQuiz } from "Context/QuizContext";
 import { QuizHeader } from "../QuizHeader";
 
 const getOptionVarient = (
@@ -41,7 +41,7 @@ export const QuizBody = ({
     <div className="w-full mb-16">
       {!isReview && <QuizHeader currentQuestion={currentQuestion} />}
       <h1 className="text-2xl sm:text-3xl text-center text-gray-500 mt-8 mb-6 font-bold ">
-        {text}
+        Q{currentQuestion}. {text}
       </h1>
       <div className="grid sm:grid-cols-2 gap-4 w-full mt-5">
         {!isReview &&

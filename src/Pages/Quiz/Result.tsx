@@ -1,19 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useQuiz } from "../../Context/QuizContext";
-import { Button } from "../Button";
-import { QuizBody } from "../QuizBody";
+import { useQuiz } from "Context/QuizContext";
+import { Button } from "Components/Button";
+import { QuizBody } from "Components/QuizBody";
+
 export const Result = () => {
   const {
     state: { totalScore, attemptedQuiz },
-    dispatch,
   } = useQuiz();
   const [showAnswers, setShowAnswers] = useState<boolean>(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch({ type: "CALCULATE_SCORE" });
-  }, []);
 
   return (
     <>

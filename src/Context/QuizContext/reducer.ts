@@ -1,11 +1,12 @@
 import { InitialState, Action } from "./reducer.types";
-import { calculateScore } from "../../utils";
+import { calculateScore } from "utils";
 
 export const initialState: InitialState = {
   attemptedQuiz: null,
   currentQuestion: 0,
   totalScore: 0,
   isFinish: false,
+  isResultSubmit: false,
 };
 
 export const reducer = (
@@ -15,9 +16,7 @@ export const reducer = (
   switch (action.type) {
     case "LOAD_QUIZ":
       return {
-        totalScore: 0,
-        currentQuestion: 0,
-        isFinish: false,
+        ...initialState,
         attemptedQuiz: action.payload.quiz,
       };
     case "SKIP_QUESTION":
@@ -25,7 +24,13 @@ export const reducer = (
         const isQuizEnd =
           state.currentQuestion === state.attemptedQuiz.questions.length;
         return isQuizEnd
-          ? { ...state, isFinish: true }
+          ? {
+              ...state,
+              isFinish: true,
+              totalScore: isQuizEnd
+                ? calculateScore(state.attemptedQuiz.questions)
+                : 0,
+            }
           : { ...state, currentQuestion: state.currentQuestion + 1 };
       }
       return state;
@@ -64,17 +69,15 @@ export const reducer = (
               ? state.currentQuestion
               : state.currentQuestion + 1,
             attemptedQuiz: attemptedQuizUpdated,
+            totalScore: isQuizEnd
+              ? calculateScore(attemptedQuizUpdated.questions)
+              : 0,
           };
         }
       }
       return state;
-    case "CALCULATE_SCORE":
-      return state.attemptedQuiz
-        ? {
-            ...state,
-            totalScore: calculateScore(state.attemptedQuiz.questions),
-          }
-        : state;
+    case "RESULT_SUBMITED":
+      return { ...state, isResultSubmit: true };
     default:
       return state;
   }

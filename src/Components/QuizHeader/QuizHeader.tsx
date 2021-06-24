@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useQuiz } from "../../Context/QuizContext";
+import { useQuiz } from "Context/QuizContext";
 export const QuizHeader: React.FC<{ currentQuestion: number }> = ({
   currentQuestion,
 }) => {

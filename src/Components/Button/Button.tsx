@@ -10,7 +10,7 @@ type Buttontype = {
 };
 
 const lgBtnStyle = "px-6 py-3";
-const smBtnStyle = "p-1";
+const smBtnStyle = "px-3 py-2";
 
 const defaultBtnStyle =
   "flex justify-center items-center text-md tracking-wide transition-colors duration-50 rounded-sm focus:outline-none focus-visible:ring-1 focus-visible:ring-primary-light";
