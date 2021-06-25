@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "context/AuthProvider";
 export const Navbar = () => {
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
-  const { logoutUser } = useAuth();
+  const { logoutUser, user } = useAuth();
   return (
     <>
       <div className="box-border flex justify-between items-center w-full px-8 py-3 bg-primary-dark">
@@ -26,11 +26,13 @@ export const Navbar = () => {
               <NavLink to="/leaderboard" className="block px-4 py-2 text-sm">
                 Leader Broad
               </NavLink>
-              <button
-                className="w-full px-4 py-2 text-sm text-left"
-                onClick={() => logoutUser()}>
-                Logout
-              </button>
+              {user && (
+                <button
+                  className="w-full px-4 py-2 text-sm text-left"
+                  onClick={() => logoutUser()}>
+                  Logout
+                </button>
+              )}
             </ul>
           )}
         </div>
