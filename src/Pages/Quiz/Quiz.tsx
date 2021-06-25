@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { QuizRules } from "Components/QuizRules";
-import { QuizBody } from "Components/QuizBody";
-import { useQuiz } from "Context/QuizContext";
-import { useQuizzez } from "Context/QuizziesContext";
+import { QuizRules } from "./QuizRules";
+import { QuizBody } from "./QuizBody";
+import { useQuiz } from "Context/QuizProvider";
+import { useQuizzez } from "Context/QuizziesProvider";
 import { Result } from "./Result";
 import { useParams, useNavigate } from "react-router";
 import { submitResult } from "./quiz.service";

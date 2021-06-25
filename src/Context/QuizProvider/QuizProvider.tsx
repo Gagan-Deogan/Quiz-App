@@ -1,11 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 import { initialState, reducer } from "./reducer";
-import { InitialState, Action } from "./reducer.types";
-
-type Context = {
-  state: InitialState;
-  dispatch: (action: Action) => void;
-};
+import { Context } from "./quizProvider.types";
 
 const QuizContext = createContext<Context>({} as Context);
 

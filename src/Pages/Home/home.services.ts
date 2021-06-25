@@ -4,8 +4,8 @@ import axios from "axios";
 import { QuizzesResponse } from "./home.types";
 export const getPlaylist = async (): Promise<QuizzesResponse | ServerError> => {
   try {
-    const res: QuizzesResponse = await axios.get("/quizzes");
-    return { data: res.data };
+    const res = await axios.get<QuizzesResponse>("/quizzes");
+    return res.data;
   } catch (err) {
     return catchAxiosErr(err);
   }

@@ -1,7 +1,7 @@
-import { InitialState, Action } from "./reducer.types";
+import { QuizInitialState, QuizAction } from "./quizProvider.types";
 import { calculateScore } from "utils";
 
-export const initialState: InitialState = {
+export const initialState: QuizInitialState = {
   attemptedQuiz: null,
   currentQuestion: 0,
   totalScore: 0,
@@ -10,8 +10,8 @@ export const initialState: InitialState = {
 };
 
 export const reducer = (
-  state: InitialState,
-  action: Action
+  state: QuizInitialState,
+  action: QuizAction
 ): typeof initialState => {
   switch (action.type) {
     case "LOAD_QUIZ":

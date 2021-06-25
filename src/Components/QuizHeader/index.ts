@@ -1,1 +1,0 @@
-export { QuizHeader } from "./QuizHeader";

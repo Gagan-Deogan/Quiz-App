@@ -146,9 +146,9 @@ export const Signup = () => {
               </Button>
             </div>
           </form>
-          <Link to="/signup">
+          <Link to="/">
             <h6 className="text-center text-primary-default">
-              Don't have an account? Signup now!
+              Already have account ? Go to Login
             </h6>
           </Link>
         </div>

@@ -17,6 +17,7 @@ export const Login = () => {
     if (email && password && status === "IDLE") {
       setStatus("PENDING");
       const res = await handleLogin({ email, password });
+      console.log({ res });
       if ("data" in res) {
         loginUser(res.data);
       } else {
@@ -73,7 +74,7 @@ export const Login = () => {
           </form>
           <Link to="/signup">
             <h6 className="text-center text-primary-default">
-              Don't have an account? Signup now!
+              Don't have an account ? Signup now!
             </h6>
           </Link>
         </div>

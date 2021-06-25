@@ -7,12 +7,12 @@ export const signUp = async ({
   password,
 }: handleSignupProps): Promise<SignUpResponse | ServerError> => {
   try {
-    const res: SignUpResponse = await axios.post("/users/signup", {
+    const res = await axios.post<SignUpResponse>("/users/signup", {
       email,
       username,
       password,
     });
-    return { data: res.data };
+    return res.data;
   } catch (err) {
     if (axios.isAxiosError(err)) {
       const serverError = err as AxiosError<ServerError>;

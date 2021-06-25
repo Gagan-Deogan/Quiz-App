@@ -1,6 +1,6 @@
 import { Quiz } from "types/share.types";
 
-export type InitialState = {
+export type QuizInitialState = {
   attemptedQuiz: Quiz | null;
   currentQuestion: number;
   totalScore: number;
@@ -8,7 +8,7 @@ export type InitialState = {
   isResultSubmit: boolean;
 };
 
-export type Action =
+export type QuizAction =
   | { type: "LOAD_QUIZ"; payload: { quiz: Quiz | null } }
   | { type: "SKIP_QUESTION" }
   | {
@@ -16,3 +16,8 @@ export type Action =
       payload: { questionId: string; optionId: string };
     }
   | { type: "RESULT_SUBMITED" };
+
+export type Context = {
+  state: QuizInitialState;
+  dispatch: (action: QuizAction) => void;
+};

@@ -36,13 +36,14 @@ export const AuthProvider: React.FC = ({ children }) => {
       setUser(user);
       setToken(token);
       localStorage.setItem("token", token);
+      navigate("/home");
     }
   };
 
   useEffect(() => {
     (async () => {
       if (token) {
-        const res = await getUserDetails(token);
+        const res = await getUserDetails();
         setLoading(false);
         if ("data" in res) {
           setUser(res.data);

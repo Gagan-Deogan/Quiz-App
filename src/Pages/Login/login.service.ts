@@ -7,14 +7,12 @@ export const handleLogin = async ({
   password,
 }: handleLoginProps): Promise<LoginResponse | ServerError> => {
   try {
-    const res: LoginResponse = await axios.post("/users/login", {
+    const res = await axios.post<LoginResponse>("/users/login", {
       email,
       password,
     });
-    return { data: res.data };
+    return res.data;
   } catch (err) {
-    console.log(err);
-
     return catchAxiosErr(err);
   }
 };

@@ -8,10 +8,10 @@ export const submitResult = async (
   totalScore: number
 ): Promise<SubmitScoreResponse | ServerError> => {
   try {
-    const res: SubmitScoreResponse = await axios.post(`/scores/${quizId}`, {
+    const res = await axios.post<SubmitScoreResponse>(`/scores/${quizId}`, {
       score: totalScore,
     });
-    return res;
+    return res.data;
   } catch (err) {
     return catchAxiosErr(err);
   }

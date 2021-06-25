@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { Card } from "./Card";
-import { useQuizzez } from "Context/QuizziesContext";
+import { useQuizzez } from "Context/QuizziesProvider";
+import { useAuth } from "Context/AuthProvider";
 import { Loader } from "Components/Loader";
 import { getPlaylist } from "./home.services";
 import { Button } from "Components/Button";
 export const Home = () => {
   const { quizzes, status, setQuizzes, setStatus } = useQuizzez();
-
+  const { user } = useAuth();
   useEffect(() => {
     if (status === "IDLE") {
       (async () => {
@@ -26,11 +27,18 @@ export const Home = () => {
       <section className="lg:container mx-auto px-3">
         {status === "PENDING" && <Loader></Loader>}
         {status === "FULFILLED" && (
-          <ul className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 my-4">
-            {quizzes?.map((quiz) => (
-              <Card quiz={quiz} key={quiz._id} />
-            ))}
-          </ul>
+          <>
+            {user && (
+              <h1 className="mt-6 mb-8 text-3xl md:text-4xl">
+                Welcome {user.username}
+              </h1>
+            )}
+            <ul className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 my-4">
+              {quizzes?.map((quiz) => (
+                <Card quiz={quiz} key={quiz._id} />
+              ))}
+            </ul>
+          </>
         )}
         {status === "ERROR" && (
           <div className="w-full">

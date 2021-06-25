@@ -1,4 +1,4 @@
-import { Button } from "../Button";
+import { Button } from "Components/Button";
 
 export const QuizRules: React.FC<{
   startTheQuiz: Function;

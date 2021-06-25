@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useQuiz } from "Context/QuizContext";
+import { useQuiz } from "Context/QuizProvider";
 import { Button } from "Components/Button";
-import { QuizBody } from "Components/QuizBody";
+import { QuizBody } from "./QuizBody";
 
 export const Result = () => {
   const {
@@ -40,8 +40,13 @@ export const Result = () => {
       </div>
       {showAnswers &&
         attemptedQuiz &&
-        attemptedQuiz.questions.map((question) => (
-          <QuizBody question={question} isReview={true} key={question._id} />
+        attemptedQuiz.questions.map((question, i) => (
+          <QuizBody
+            question={question}
+            isReview={true}
+            key={question._id}
+            questionindex={i + 1}
+          />
         ))}
     </>
   );
