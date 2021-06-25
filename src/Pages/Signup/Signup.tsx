@@ -1,11 +1,11 @@
 import { useReducer, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "Components/Button";
+import { Button } from "common-components/Button";
 import { reducer, initialState } from "./signup.reducer";
 import { checkPasswordStrength } from "utils";
-import { PasswordInput } from "Components/PasswordInput";
+import { PasswordInput } from "common-components/PasswordInput";
 import { signUp } from "./signup.service";
-import { useAuth } from "Context/AuthProvider";
+import { useAuth } from "context/AuthProvider";
 
 export const Signup = () => {
   const navigate = useNavigate();

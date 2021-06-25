@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Loader } from "Components/Loader";
+import { Loader } from "common-components/Loader";
 import { Leaders } from "./leaderboard.types";
 import { getLeaderBoard } from "./leaderBoard.service";
 import { LeaderTable } from "./LeadersTable";

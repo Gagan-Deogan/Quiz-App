@@ -1,6 +1,6 @@
 import { Route, Navigate, useLocation } from "react-router-dom";
 import { RouteProps } from "./routes.types";
-import { useAuth } from "Context/AuthProvider";
+import { useAuth } from "context/AuthProvider";
 export const BetterRoute: React.FC<RouteProps> = (props) => {
   const location = useLocation();
   const { pathname } = location;

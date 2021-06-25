@@ -1,4 +1,4 @@
-import { ServerError } from "./../../types/serverError";
+import { ServerError } from "../../types/serverError";
 import axios from "axios";
 import { catchAxiosErr } from "utils/catchAxiosError";
 import { SubmitScoreResponse } from "./quiz.types";

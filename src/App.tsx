@@ -1,14 +1,14 @@
-import { Navbar } from "./Components/Navbar";
+import { Navbar } from "common-components/Navbar";
 import { Routes } from "react-router-dom";
-import { useSnakbar } from "Context/SnakbarProvider";
-import { Home } from "./Pages/Home";
-import { Login } from "./Pages/Login";
-import { Quiz } from "./Pages/Quiz";
-import { Signup } from "Pages/Signup";
-import { LeaderBoard } from "Pages/LeaderBoard";
-import { BetterRoute } from "Components/BetterRoute";
-import { Snakbar } from "Components/Snakbar";
-import { Interceptor } from "Components/Interceptor";
+import { useSnakbar } from "context/SnakbarProvider";
+import { Home } from "./pages/Home";
+import { Login } from "./pages/Login";
+import { Quiz } from "./pages/Quiz";
+import { Signup } from "pages/Signup";
+import { LeaderBoard } from "pages/LeaderBoard";
+import { BetterRoute } from "common-components/BetterRoute";
+import { Snakbar } from "common-components/Snakbar";
+import { Interceptor } from "common-components/Interceptor";
 
 export const App = () => {
   const {
@@ -17,7 +17,6 @@ export const App = () => {
   return (
     <div className="App">
       <Interceptor />
-
       {isShow && <Snakbar />}
       {<Navbar />}
       <Routes>

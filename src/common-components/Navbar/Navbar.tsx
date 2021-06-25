@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Logo, MenuIcon } from "assests/icons";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "Context/AuthProvider";
+import { useAuth } from "context/AuthProvider";
 export const Navbar = () => {
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
   const { logoutUser } = useAuth();

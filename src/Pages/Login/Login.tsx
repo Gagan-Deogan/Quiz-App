@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Button } from "Components/Button";
+import { Button } from "common-components/Button";
 import { Link } from "react-router-dom";
-import { Input } from "Components/Input";
-import { PasswordInput } from "Components/PasswordInput";
+import { Input } from "common-components/Input";
+import { PasswordInput } from "common-components/PasswordInput";
 import { handleLogin } from "./login.service";
-import { useAuth } from "Context/AuthProvider";
+import { useAuth } from "context/AuthProvider";
 export const Login = () => {
   const { loginUser } = useAuth();
   const [email, setEmail] = useState<string>("");

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Loader } from "Components/Loader";
+import { Loader } from "common-components/Loader";
 import { User } from "types";
 import { setupAxiosDefaultHeaders } from "utils";
 import { getUserDetails } from "./auth.service";

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useQuiz } from "Context/QuizProvider";
+import { useQuiz } from "context/QuizProvider";
 import { Question } from "types/share.types";
-import { Button } from "Components/Button";
+import { Button } from "common-components/Button";
 import { Option } from "./Option";
 import { QuizHeader } from "./QuizHeader";
 

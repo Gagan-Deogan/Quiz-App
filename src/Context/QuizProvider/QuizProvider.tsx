@@ -1,8 +1,8 @@
 import { createContext, useContext, useReducer } from "react";
 import { initialState, reducer } from "./reducer";
-import { Context } from "./quizProvider.types";
+import { QuizContextState } from "./quizProvider.types";
 
-const QuizContext = createContext<Context>({} as Context);
+const QuizContext = createContext<QuizContextState>({} as QuizContextState);
 
 export const QuizProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);

@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "Context/AuthProvider";
-import { useSnakbar } from "Context/SnakbarProvider";
+import { useAuth } from "context/AuthProvider";
+import { useSnakbar } from "context/SnakbarProvider";
 // import { showSnakbar } from "features/snakbarSlice";
 export const Interceptor = () => {
   const navigate = useNavigate();

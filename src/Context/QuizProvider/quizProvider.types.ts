@@ -17,7 +17,7 @@ export type QuizAction =
     }
   | { type: "RESULT_SUBMITED" };
 
-export type Context = {
+export type QuizContextState = {
   state: QuizInitialState;
   dispatch: (action: QuizAction) => void;
 };

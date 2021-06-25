@@ -1,4 +1,4 @@
-import { Button } from "Components/Button";
+import { Button } from "common-components/Button";
 import { PlayIcon } from "assests/icons";
 import { useNavigate } from "react-router";
 import { Quiz } from "types/share.types";

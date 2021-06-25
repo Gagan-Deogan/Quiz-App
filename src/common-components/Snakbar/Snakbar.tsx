@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import { ErrorIcon, CheckIcon } from "assests/icons";
-import { useSnakbar } from "Context/SnakbarProvider";
+import { useSnakbar } from "context/SnakbarProvider";
 type SnakbarVarient = {
   ERROR: {
     className: string;

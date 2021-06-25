@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 import "./assests/css/index.css";
 import { App } from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
-import { QuizProvider } from "./Context/QuizProvider";
-import { QuizzezProvider } from "./Context/QuizziesProvider";
-import { AuthProvider } from "Context/AuthProvider";
-import { SnakbarProvider } from "Context/SnakbarProvider";
+import { QuizProvider } from "./context/QuizProvider";
+import { QuizzezProvider } from "./context/QuizziesProvider";
+import { AuthProvider } from "context/AuthProvider";
+import { SnakbarProvider } from "context/SnakbarProvider";
 ReactDOM.render(
   <React.StrictMode>
     <Router>

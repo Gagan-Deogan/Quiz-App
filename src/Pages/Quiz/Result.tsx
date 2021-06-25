@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useQuiz } from "Context/QuizProvider";
-import { Button } from "Components/Button";
+import { useQuiz } from "context/QuizProvider";
+import { Button } from "common-components/Button";
 import { QuizBody } from "./QuizBody";
 
 export const Result = () => {

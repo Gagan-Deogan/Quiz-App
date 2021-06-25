@@ -1,5 +1,5 @@
 @tailwind base;
-@tailwind components;
+@tailwind common-components;
 @tailwind utilities;
 
 * {

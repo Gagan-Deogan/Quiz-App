@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { Card } from "./Card";
-import { useQuizzez } from "Context/QuizziesProvider";
-import { useAuth } from "Context/AuthProvider";
-import { Loader } from "Components/Loader";
+import { useQuizzez } from "context/QuizziesProvider";
+import { useAuth } from "context/AuthProvider";
+import { Loader } from "common-components/Loader";
 import { getPlaylist } from "./home.services";
-import { Button } from "Components/Button";
+import { Button } from "common-components/Button";
 export const Home = () => {
   const { quizzes, status, setQuizzes, setStatus } = useQuizzez();
   const { user } = useAuth();
