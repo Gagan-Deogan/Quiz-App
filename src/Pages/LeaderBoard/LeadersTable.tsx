@@ -13,7 +13,9 @@ export const LeaderTable = ({ leaders }: { leaders: Leaders }) => {
           </div>
         </li>
         {leaders?.map((leader) => (
-          <li className="flex flex-row border-b-2 border-gray ">
+          <li
+            className="flex flex-row border-b-2 border-gray "
+            key={leader._id}>
             <div className="w-1/2 py-2.5 px-3">{leader.userId.username}</div>
             <div className="w-1/2 py-2.5 px-3">{leader.totalScore}</div>
           </li>

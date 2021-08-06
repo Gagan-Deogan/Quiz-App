@@ -16,7 +16,7 @@ export const QuizHeader: React.FC<{ currentQuestion: number }> = ({
     if (timer < 1) {
       dispatch({ type: "SKIP_QUESTION" });
     }
-  }, [timer]);
+  }, [timer, dispatch]);
 
   return (
     <div className="flex">

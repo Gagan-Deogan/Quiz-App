@@ -17,13 +17,12 @@ export const Login = () => {
     if (email && password && status === "IDLE") {
       setStatus("PENDING");
       const res = await handleLogin({ email, password });
-      console.log({ res });
       if ("data" in res) {
         loginUser(res.data);
       } else {
         setError(res.error);
+        setStatus("IDLE");
       }
-      setStatus("IDLE");
     }
   };
 

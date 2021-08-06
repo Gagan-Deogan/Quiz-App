@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "context/AuthProvider";
 import { useSnakbar } from "context/SnakbarProvider";
@@ -8,12 +8,10 @@ export const Interceptor = () => {
   const navigate = useNavigate();
   const { logoutUser } = useAuth();
   const { snakbarDispatch } = useSnakbar();
-  const [errorInterceptor, setErrorInterceptor] = useState<number | undefined>(
-    undefined
-  );
+  const errorInterceptor = useRef<number | undefined>(undefined);
 
-  const addErrorInterceptor = () => {
-    const errorInterceptor = axios.interceptors.response.use(
+  const addErrorInterceptor = useCallback(() => {
+    errorInterceptor.current = axios.interceptors.response.use(
       (res) => {
         if (res.status === 201) {
           snakbarDispatch({
@@ -48,22 +46,20 @@ export const Interceptor = () => {
         return Promise.reject(error);
       }
     );
-    setErrorInterceptor(errorInterceptor);
-  };
+  }, [logoutUser, navigate, snakbarDispatch]);
 
-  const removeErrorInterceptor = () => {
-    if (errorInterceptor) {
-      axios.interceptors.request.eject(errorInterceptor);
-      setErrorInterceptor(undefined);
+  const removeErrorInterceptor = useCallback(() => {
+    if (errorInterceptor.current) {
+      axios.interceptors.request.eject(errorInterceptor.current);
     }
-  };
+  }, []);
 
   useEffect(() => {
     addErrorInterceptor();
     return () => {
       removeErrorInterceptor();
     };
-  }, []);
+  }, [addErrorInterceptor, removeErrorInterceptor]);
 
   return <></>;
 };

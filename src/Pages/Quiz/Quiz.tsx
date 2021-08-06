@@ -47,7 +47,7 @@ export const Quiz = () => {
         }
       })();
     }
-  }, [attemptedQuiz, dispatch, isResultSubmit, totalScore]);
+  }, [attemptedQuiz, dispatch, isResultSubmit, totalScore, isFinish, quizId]);
 
   return (
     <>
