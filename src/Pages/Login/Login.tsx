@@ -7,8 +7,8 @@ import { handleLogin } from "./login.service";
 import { useAuth } from "context/AuthProvider";
 export const Login = () => {
   const { loginUser } = useAuth();
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("Gagan@gmail.com");
+  const [password, setPassword] = useState<string>("Gagan@123");
   const [status, setStatus] = useState<"IDLE" | "PENDING">("IDLE");
   const [error, setError] = useState<string>("");
 
@@ -45,6 +45,7 @@ export const Login = () => {
                 id="email"
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
+                value={email}
                 required
               />
             </div>
@@ -57,6 +58,7 @@ export const Login = () => {
               <PasswordInput
                 name="current-password"
                 id="password"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
