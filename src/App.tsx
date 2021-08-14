@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Navbar } from "common-components/Navbar";
+import { Routes } from "react-router-dom";
+import { useSnakbar } from "context/SnakbarProvider";
+import { Home } from "./pages/Home";
+import { Login } from "./pages/Login";
+import { Quiz } from "./pages/Quiz";
+import { Signup } from "pages/Signup";
+import { LeaderBoard } from "pages/LeaderBoard";
+import { BetterRoute } from "common-components/BetterRoute";
+import { Snakbar } from "common-components/Snakbar";
+import { Interceptor } from "common-components/Interceptor";
 
-function App() {
+export const App = () => {
+  const {
+    state: { isShow },
+  } = useSnakbar();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Interceptor />
+      {isShow && <Snakbar />}
+      {<Navbar />}
+      <Routes>
+        <BetterRoute type="PUBLIC-ONLY" path="/" element={<Login />} />
+        <BetterRoute type="PUBLIC-ONLY" path="/signup" element={<Signup />} />
+        <BetterRoute
+          type="PROTECTED"
+          path="/leaderboard"
+          element={<LeaderBoard />}
+        />
+        <BetterRoute type="PROTECTED" path="/home" element={<Home />} />
+        <BetterRoute type="PROTECTED" path="/quiz/:quizId" element={<Quiz />} />
+      </Routes>
     </div>
   );
-}
-
-export default App;
+};
